@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "node_modules/bulma/sass/utilities/initial-variables";
+@import "node_modules/bulma/sass/utilities/functions";
+$menu-item-active-background-color: $turquoise;
+@import "node_modules/bulma/bulma";
+* {
+    box-sizing: border-box;
+}
+
+.columns {
+    margin: 0;
+}
+
+.image.is-doc {
+    margin: 0.5rem;
+}
+
+.image.is-doc img {
+    max-width: 100%;
+}
+
+.image.is-doc.small img {
+    width: 30rem;
+}
+
+.image.is-doc.middle img {
+    width: 45rem;
+}
+
+.image.is-doc.large img {
+    width: 70rem;
+}
+
+.box.show-case {
+    height: 20rem;
+}

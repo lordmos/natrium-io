@@ -1,0 +1,263 @@
+<div class="content">
+
+    <h1>NaTable</h1>
+
+    <p>数据和配置驱动的表格。通过配置文件，你就可以轻松展示表格数据，并且通过（非<code>Angular</code>的）<code>pipe</code>支持，显示你需要的数据格式，此外<code>NaTable</code>支持行复选、全选，方便你对多行数据进行批量操作。NaTbale充分减少你的HTML和CSS代码量，让你专注于数据和逻辑本身。</p>
+
+    <div class="is-divider"></div>
+
+    <h2>演示</h2>
+
+    <div class="container box show-case">
+        <na-table [config]="config" [data]="data"></na-table>
+    </div>
+
+    <h2>使用方法</h2>
+
+    <p>在HTML文件中使用一行代码引入即可</p>
+
+    <figure class="image is-doc small">
+        <img src="assets/natrium-lib-docs/na-table/001.png" alt="">
+    </figure>
+
+    <p>在Component中的示例代码</p>
+
+    <figure class="image is-doc middle">
+        <img src="assets/natrium-lib-docs/na-table/002.png" alt="">
+    </figure>
+
+
+    <h2>参数</h2>
+
+    <blockquote>
+        <p>@Input() config: NaTableConfig</p>
+    </blockquote>
+
+    <p><code>NaTable</code>的配置参数，其中包括表格的标题、各个字段的设置、风格化设置等。具体信息请参照<code>NaTableConfig</code>文档。</p>
+
+    <blockquote>
+        <p>@Input() data: any</p>
+    </blockquote>
+
+    <p><code>NaTable</code>的初始化数据。你可以重复设置你需要的数据并且根据配置进行展示。</p>
+
+    <div class="is-divider"></div>
+
+    <h1>数据结构：NaTableConfig</h1>
+
+    <p>用于驱动<code>NaTable</code>表格的配置数据。</p>
+
+    <h2>属性</h2>
+
+    <blockquote>
+        <p>constructor(context: any): NaTableConfig</p>
+    </blockquote>
+
+    <p>由于<code>NaTable</code>只是配置数据，需要在构造函数中传入你的作用域用于驱动你作用域中的相关方法，比如回调函数。通常直接传入<code>Component</code>的<code>this</code>即可。</p>
+
+    <blockquote>
+        <p>context: any</p>
+    </blockquote>
+
+    <p>获取你设置的作用域。通常是你的<code>Component</code>作用域。</p>
+
+    <blockquote>
+        <p>setTitle(title: string): NaTableConfig</p>
+    </blockquote>
+
+    <p>设置表格的标题。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>title: string</p>
+    </blockquote>
+
+    <p>返回表格的标题。</p>
+
+    <blockquote>
+        <p>setTitleStyle(styleCss: string): NaTableConfig</p>
+    </blockquote>
+
+    <p>设置表格标题的样式。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <p>例如<code>config.setTitleStyle(&quot;title is-4&quot;)</code>将标题设置为四号主标题字体，或者<code>config.setTitleStyle(&quot;subtitle is-1&quot;)</code>将标题设置为一号副标题。具体设置方式请参照<a href="https://bulma.io/documentation/elements/title/">Bulma Title风格化设置文档</a>。</p>
+
+    <blockquote>
+        <p>titleStyle: string</p>
+    </blockquote>
+
+    <p>获取表格标题的样式。</p>
+
+    <blockquote>
+        <p>setConfig(configItemList: Array&lt;NaTableConfigItem&gt;): NaTableConfig</p>
+    </blockquote>
+
+    <p>设置表格列项的配置列表。每一列表格项都有自己的表格配置，包括字段的读取，<code>pipe</code>的支持等，详情见<code>NaTableConfigItem</code>的使用文档。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>configItems: Array&lt;NaFormConfigItem&gt;</p>
+    </blockquote>
+
+    <p>获取表格列项配置列表。</p>
+
+    <blockquote>
+        <p>setPaginationConfig(paginationConfig: NaTablePaginationConfig): NaTableConfig</p>
+    </blockquote>
+
+    <p>表格分页器配置项。通常表格需要分页进行展示数据，只需要你指定初始页码、页码显示长度和页码数量，并且提供页码变化的回调，就可以轻松操作表格数据。使用方式见上方示例代码和文档。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>paginationConfig: NaTablePaginationConfig</p>
+    </blockquote>
+
+    <p>获取表格分页器的配置项。</p>
+
+    <blockquote>
+        <p>needShowIndex(needShowIndex: boolean): NaTableConfig</p>
+    </blockquote>
+
+    <p>行数展示。你可以根据你的需要来设置是否需要行数展示。默认为<code>false</code>。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>isNeedShowIndex(): boolean</p>
+    </blockquote>
+
+    <p>获取当前行数展示的设置。</p>
+
+    <blockquote>
+        <p>needMultiSelect(needMultiSelect: boolean): NaTableConfig</p>
+    </blockquote>
+
+    <p>行复选配置。你可以根据你的需要来设置是否需要行复选。默认为<code>false</code>。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>isNeedMultiSelect(): boolean</p>
+    </blockquote>
+
+    <p>获取当前行复选的设置。</p>
+
+    <blockquote>
+        <p>setMultiSelectActions(actions: Array&lt;NaTableAction&gt;): NaTableConfig</p>
+    </blockquote>
+
+    <p>行复选操作。你可能需要操作被选择的行数据，通过设置提供复选操作回调函数，并且设置按钮展示文案和风格化信息就可以轻松获取行复选的数据操作功能。使用方式见上方示例代码和文档。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>multiSelectActions: Array&lt;NaTableAction&gt;</p>
+    </blockquote>
+
+    <p>获取行复选操作配置项。</p>
+
+    <blockquote>
+        <p>setSingleSelectActions(actions: Array&lt;NaTableAction&gt;): NaTableConfig</p>
+    </blockquote>
+
+    <p>单行数据操作。你可能会希望以不同的方式操作一行数据，通过设置提供复选操作回调函数，并且设置按钮展示文案和风格化信息就可以轻松获取行数据操作功能。使用方式见上方示例代码和文档。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>singleSelectActions(): Array&lt;NaTableAction&gt;</p>
+    </blockquote>
+
+    <p>获取行操作配置项。</p>
+
+    <blockquote>
+        <p>setNormalActions(actions: Array&lt;NaTableAction&gt;): NaTableConfig</p>
+    </blockquote>
+
+    <p>其他表格数据操作。你可能会希望新增表格数据或者做一些和表格数据并没有强关联的操作，通过设置提供复选操作回调函数，并且设置按钮展示文案和风格化信息就可以轻松获取其他表格数据操作。使用方式见上方示例代码和文档。返回调用函数的<code>NaTableConfig</code>来支持链式调用。</p>
+
+    <blockquote>
+        <p>normalActions(): Array&lt;NaTableAction&gt;</p>
+    </blockquote>
+
+    <p>获取其他表格数据操作配置项。</p>
+
+    <div class="is-divider"></div>
+
+    <h1>数据结构：NaTableConfigItem</h1>
+
+    <p>表格列数据项的配置信息。</p>
+
+    <h2>属性</h2>
+
+    <blockquote>
+        <p>label: string</p>
+    </blockquote>
+
+    <p>表格列数据项的标题。用于表格列项表头的文案展示。</p>
+
+    <blockquote>
+        <p>name: string</p>
+    </blockquote>
+
+    <p>表格列数据项的字段名。表格数据中的字段名相同。</p>
+
+    <blockquote>
+        <p>pipe?: (value: any) =&gt; string</p>
+    </blockquote>
+
+    <p>你可能需要对表格列项进行数据的格式化显示，比如你可以通过设置<code>timeFormmater(time: number) : string {{'{'}} return new Date(time).toLocaleDateString(); {{'}'}}</code>来显示本地化时间</p>
+
+    <div class="is-divider"></div>
+
+    <h1>数据结构：NaTableAction</h1>
+
+    <p>表格操作的配置信息。</p>
+
+    <h2>属性</h2>
+
+    <blockquote>
+        <p>btnText: string</p>
+    </blockquote>
+
+    <p>表格操作按钮的文案展示。</p>
+
+    <blockquote>
+        <p>btnIcon?: string</p>
+    </blockquote>
+
+    <p>表格操作按钮的图标展示。</p>
+
+    <blockquote>
+        <p>btnStyleCss?: string</p>
+    </blockquote>
+
+    <p>表格操作按钮的风格化展示。</p>
+
+    <blockquote>
+        <p>callback: (index?: Array&lt;number&gt; | number) =&gt; void</p>
+    </blockquote>
+
+    <p>表格操作的行数回调。单行操作会返回行数，多行操作会返回行数列表，而其他表格数据操作则不会返回行数。</p>
+
+    <div class="is-divider"></div>
+
+    <h1>数据结构：NaTablePaginationConfig</h1>
+
+    <p>表格分页器的配置信息。</p>
+
+    <h2>属性</h2>
+
+    <blockquote>
+        <p>currentPage: number</p>
+    </blockquote>
+
+    <p>分页器当前页页码。</p>
+
+    <blockquote>
+        <p>totalPage: number</p>
+    </blockquote>
+
+    <p>分页器页码数量。</p>
+
+    <blockquote>
+        <p>maxLength: number</p>
+    </blockquote>
+
+    <p>分页器页码显示长度。</p>
+
+    <blockquote>
+        <p>onPageChange: (page: number) =&gt; void</p>
+    </blockquote>
+
+    <p>分页器页码变化回调</p>
+</div>

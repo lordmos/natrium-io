@@ -1,0 +1,117 @@
+<div class="content">
+    <h1>Natrium Lib 简介</h1>
+
+    <p><code>Natrium Lib</code>是<code>Natrium Schematics</code>和<code>Natrium</code>项目依赖的组件集。</p>
+
+    <p>由于<code>Natrium</code>项目需要基于<code>Angular 6.0.0</code>版本的项目才能工作，因此通过<code>npm</code>安装组件集需要安装<code>Angular 6.0.0</code>依赖，但是实际上<code>Natrium Lib</code>有能力单独在<code>Angular 2.x</code>以上的所有项目中正常工作，如果需要，你可以直接下载源码，直接拷贝相应的代码，并且在安装<code>Bulma</code>、<code>Bulma-extensions</code>和<code>Ionicons</code>后集成到你的<code>Angular</code>项目中。</p>
+
+    <p><code>Natrium Lib</code>的依赖只有<code>Bulma</code>、<code>Bulma-extensions</code>和<code>Ionicons</code>，它们分别为<code>Natrium Lib</code>提供基础组件、响应式布局和图标的支持。</p>
+
+    <div class="is-divider"></div>
+
+    <h2>如何安装Natrium Lib？</h2>
+
+    <pre><code>npm install --save natrium-lib</code></pre>
+
+    <p>安装过程中将会自动安装<code>Bulma</code>、<code>Bulma-extensions</code>和<code>Ionicons</code>，并在<code>angular.json</code>中添加相应的<code>CSS</code>引用。安装完成后需要用户手动在<code>app.module.ts</code>中引入<code>NatriumLibModule</code>:</p>
+
+    <blockquote>
+        <p>app.module.ts</p>
+    </blockquote>
+
+    <figure class="image is-doc middle">
+        <img src="assets/overview-docs/natrium-lib-intro/001.png" alt="">
+    </figure>
+
+
+    <h2>如何卸载Natrium Lib？</h2>
+
+    <pre><code>npm uninstall --save natrium-lib</code></pre>
+
+    <p>出于考量，你可能会依然需要在项目中使用<code>Bulma</code>、<code>Bulma-extensions</code>和<code>Ionicons</code>，因此在卸载时请<strong>按需</strong>手动清除<code>angular.json</code>文件中的<code>CSS</code>引用，以免<code>Angular</code>项目无法正常编译。以下是<code>CSS</code>引用：</p>
+
+    <blockquote>
+        <p>angular.json</p>
+    </blockquote>
+
+    <figure class="image is-doc middle">
+        <img src="assets/overview-docs/natrium-lib-intro/002.png" alt="">
+    </figure>
+
+
+    <p>另外，由于在<code>Natrium Lib</code>中部分<code>Bulma-extensions</code>组件需要<code>JavaScript</code>依赖，因此请在卸载<code>Natrium Lib</code>时也请<strong>按需</strong>删除手动清除<code>angular.json</code>文件中的<code>JavaScript</code>引用，以免<code>Angular</code>项目无法正常编译。以下是<code>JavaScript</code>引用：</p>
+
+    <blockquote>
+        <p>angular.json</p>
+    </blockquote>
+
+    <figure class="image is-doc large">
+        <img src="assets/overview-docs/natrium-lib-intro/003.png" alt="">
+    </figure>
+
+    <h2>Natrium基础组件集</h2>
+
+    <p><code>Natrium Lib</code>使用<a href="https://bulma.io/" target="blank">Bulma</a>以及<a href="https://wikiki.github.io/" target="blank">Bulma-extensions</a>，<code>Bulma</code>作为基本组件的样式集，<code>Bulma-extensions</code>是基础的组件补充。</p>
+
+    <p><code>Bulma</code>和<strong>大多</strong><code>Bulma-extensions</code>组件仅需引入<code>CSS</code>样式文件而无需任何<code>JavaScript</code>代码支持，少部分组件需要你在代码中通过变更<code>CSS</code>样式进行激活，这个与Angular的<code>ngClass</code>能够很好的配合。例如：</p>
+
+    <ul>
+        <li><a href="https://wikiki.github.io/elements/pageloader/" target="blank">Page-loader</a>，来自<code>Bulma-extensions</code>：它的引用方式很简单，只需要一行HTML代码<code>&lt;div class="pageloader"&gt;&lt;span class="title"&gt;Pageloader&lt;/span&gt;&lt;/div&gt;</code>，默认的状态是收起状态，需要通过在<code>Page-loader</code>的样式中使用<code>is-active</code>激活它，如<code>&lt;div class="pageloader is-active"&gt;&lt;span class="title"&gt;Pageloader&lt;/span&gt;&lt;/div&gt;</code>。在Angular中，你可以通过ngClass的方式来激活它。</li>
+    </ul>
+
+    <p>另外<code>Bulma-extensions</code>提供了一部分需要<code>JavaScript</code>支持的复合组件，也在安装时自动将<code>JavaScript</code>引入到了<code>angular.json</code>文件中。自动引入的组件有：</p>
+
+    <ul>
+        <li><a href="https://wikiki.github.io/components/accordion/" target="blank">Accordion</a></li>
+        <li><a href="https://wikiki.github.io/components/calendar/" target="blank">Calendar</a></li>
+        <li><a href="https://wikiki.github.io/components/carousel/" target="blank">Carousel</a></li>
+        <li><a href="https://wikiki.github.io/form/tagsinput/" target="blank">TagsInput</a></li>
+    </ul>
+
+    <p>同时，你在使用<code>Bulma-extensions</code>的某个组件，比如<code>Tooltip</code>，使用方式很简单，只需<code>&lt;button class="button is-primary tooltip" data-tooltip="Tooltip Text"&gt;top tooltip&lt;/button&gt;</code>即可，但是如果你需要双向绑定<code>Tooltip</code>的内容时，你需要使用<code>&lt;button class="button is-primary tooltip" [attr.data-tooltip]="tooltipText"&gt;top tooltip&lt;/button&gt;</code>来进行绑定。很多组件的数据都是在attribute中。</p>
+
+    <p>组件具体的使用方式与样式请参照<code>Bulma</code>和<code>Bulma-extensions</code>的官方文档。</p>
+
+    <h2>Natrium图标集</h2>
+
+    <p><code>Natrium Lib</code>使用<a href="https://ionicons.com/" target="blank">Ionicons</a>作为基本图标的样式集。</p>
+
+    <p><code>Bulma</code>兼容<code>Font Awesome 5</code>、<code>Font Awesome 4</code>、<code>Material Design Icons</code>、<code>Open Iconic</code>、<code>Ionicons</code>等图标集。在<code>Natrium Lib</code>内部<code>Natrium Lib</code>默认集成了<code>Ionicons</code>图标集，你也可以安装以上图标集中的任何图标集进行使用。<code>Ionicons</code>图标集的使用方法非常简单，例如：</p>
+
+    <figure class="image is-doc small">
+        <img src="assets/overview-docs/natrium-lib-intro/004.png" alt="">
+    </figure>
+
+    <p>图标的使用方法请参照<code>Bulma</code><a href="https://bulma.io/documentation/elements/icon/" target="blank">官方文档-图标部分</a>和相应的图标集使用文档。</p>
+
+    <h2>Natrium复合型组件集</h2>
+
+    <p>复合型组件是对<code>Bulma</code>的基本组件的<code>Angular</code>组合封装。<code>Natrium Lib</code>的组件设计哲学就是<strong>“Data always first”</strong>，<code>Natrium Lib</code>希望用户只关心数据本身，而不需要在<code>HTML</code>模版上进行修改。</p>
+
+    <p>包含以下组件，其中包括：</p>
+
+    <ul>
+        <li><a href="#/natrium-lib-docs/na-table">NaTable</a> : 通过加载配置项数据和列表数据，可以对表格数据进行展示和操作。</li>
+
+        <li><a href="#/natrium-lib-docs/na-form">NaForm</a> : 通过加载配置项数据和表单数据，可以对表单数据进行展示和操作，而且还能轻松获得表单验证的支持。</li>
+
+        <li><a href="#/natrium-lib-docs/na-detail-editor">NaDetailEditor</a> : 通常用来展示表单详情数据，同时支持字段编辑。通过加载配置项数据和表单数据，可以对表单数据进行展示和操作，而且还能轻松获得表单验证的支持。</li>
+    </ul>
+
+    <h2>Natrium封装型组件集</h2>
+
+    <p>封装型组件是对常用组件的一层封装，让大家可以直接使用组件而避免非数据驱动或者无法直接使用的副作用。</p>
+
+    <ul>
+        <li><a href="#/natrium-lib-docs/na-pagination">NaPagination</a> : 分页导航器。初始化时设置当前页、总页数和页面导航器所要展示的页面数量，就可以轻松获取和操作页面导航数据。由于<code>Bulma</code>的<code>Pagination</code>并不基于数据驱动<code>AJAX</code>请求而是页面跳转——当然也可以通过<code>Angular</code>点击事件驱动，但是用户需要在<code>HTML</code>上进行处理，为了减少用户的代码量——因此<code>Natrium Lib</code>不推荐直接使用<code>Bulma</code>的<code>Pagination</code>组件而是选择重新封装。</li>
+
+        <li><a href="#/natrium-lib-docs/na-component-host">NaComponentHost</a> : 在<code>Angular</code>中加载动态组件时候需要一个<code>Host</code>。直接使用<code>NaComponentHost</code>吧。</li>
+
+        <li><a href="#/natrium-lib-docs/na-outlet">NaOutlet</a> : 在<code>routing-module</code>中经常需要在HTML中嵌套<code>router-outlet</code>。直接使用<code>NaOutlet</code>吧。</li>
+    </ul>
+
+    <h2>Natrium组件风格化</h2>
+
+    <p>由于<code>Natrium Lib</code>的所有组件都基于<code>Bulma</code>和<code>Bulma-extensions</code>，因此也理应支持<code>Bulma</code>的组件风格化，只是现在暂时无法提供完整的风格化解决方案。使用方法请参考<code>Bulma</code>和<code>Bulma-extensions</code>官方文档。</p>
+
+</div>
